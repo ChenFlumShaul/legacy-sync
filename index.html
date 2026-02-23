@@ -3,63 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LegacySync</title>
+    <title>LegacySync - מעוצב</title>
     <style>
+        /* העיצוב מה-Canva */
         body {
             font-family: 'Segoe UI', sans-serif;
-            background-color: #FDF6EC; /* צבע הרקע מה-Canva */
+            background-color: #FDF6EC !important; /* הכרחי - צבע הקרם */
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 20px;
         }
         .container {
-            width: 90%;
-            max-width: 600px;
-            background: white;
-            border-radius: 40px; /* פינות מעוגלות מאוד */
+            width: 100%;
+            max-width: 500px;
+            background: #ffffff !important;
+            border-radius: 50px !important; /* פינות עגולות מאוד */
             padding: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             text-align: center;
+            border: 1px solid #eee;
         }
         #dailyImage {
             width: 100%;
-            border-radius: 25px;
+            border-radius: 30px;
             margin-bottom: 25px;
             display: none;
         }
-        .date-text {
-            color: #2c3e50;
-            font-size: 1.8rem;
+        .date-display {
+            font-size: 1.5rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .event-badge {
+            background: #FFE4E1;
+            color: #FF6B6B;
+            padding: 5px 15px;
+            border-radius: 20px;
             font-weight: bold;
-            margin-bottom: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
         }
         .fact-text {
             font-size: 2.2rem;
-            line-height: 1.4;
-            color: #4A4A4A;
-            margin-bottom: 30px;
+            font-weight: bold;
+            line-height: 1.3;
+            color: #333;
+            margin: 20px 0;
         }
         .audio-btn {
-            background-color: #FF8A8A; /* צבע ורוד-כתום מהעיצוב */
+            background-color: #FF9F43; /* כתום חם */
             color: white;
             border: none;
-            padding: 15px 35px;
-            font-size: 1.4rem;
+            padding: 15px 30px;
+            font-size: 1.2rem;
             border-radius: 50px;
             cursor: pointer;
-            display: none;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255,159,67,0.3);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img id="dailyImage" src="" alt="תמונה">
-        <div id="dateDisplay" class="date-text">טוען...</div>
+        <img id="dailyImage" src="" alt="">
+        <div id="eventContainer" style="display:none;"><span id="eventDisplay" class="event-badge"></span></div>
+        <div id="dateDisplay" class="date-display">טוען תאריך...</div>
         <div id="factDisplay" class="fact-text">מתחבר...</div>
-        <button id="playFactAudioBtn" class="audio-btn">שמעי את אמא 🎧</button>
+        <button id="playFactAudioBtn" class="audio-btn" style="display:none;">הקרא לי את העובדה 👩🏻</button>
         <audio id="factAudioPlayer" style="display: none;"></audio>
     </div>
     <script src="app.js"></script>
