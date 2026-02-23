@@ -1,0 +1,10 @@
+{
+  "short_name": "LegacySync",
+  "name": "LegacySync - לוח השנה שלי",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f0f8ff",
+  "theme_color": "#2c3e50",
+  "dir": "rtl",
+  "lang": "he-IL"
+}
