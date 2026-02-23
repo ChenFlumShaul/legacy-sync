@@ -3,164 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LegacySync - החוויה היומית</title>
-    <link rel="manifest" href="manifest.json">
+    <title>LegacySync</title>
     <style>
-        :root {
-            --bg-color: #FDF6EC; /* צבע רקע קרם בהיר כמו ב-Canva */
-            --accent-color: #FF8A8A; /* צבע ורוד-כתום עדין */
-            --text-color: #4A4A4A;
-            --card-bg: #FFFFFF;
-        }
-
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #FDF6EC; /* צבע הרקע מה-Canva */
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
-
         .container {
             width: 90%;
-            max-width: 800px;
-            background: var(--card-bg);
-            border-radius: 40px; /* פינות מעוגלות מאוד כמו בעיצוב */
+            max-width: 600px;
+            background: white;
+            border-radius: 40px; /* פינות מעוגלות מאוד */
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
             text-align: center;
         }
-
         #dailyImage {
             width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 30px;
-            margin-bottom: 30px;
-            display: none; /* יוצג רק כשיש תמונה */
-            border: 8px solid #FFF;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            color: #A0A0A0;
-            margin: 0;
-            font-weight: 400;
-        }
-
-        .date-display {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .fact-text {
-            font-size: 2.5rem; /* טקסט גדול וברור לילדים */
-            font-weight: bold;
-            line-height: 1.3;
-            margin: 20px 0;
-            color: var(--text-color);
-        }
-
-        .event-badge {
-            display: inline-block;
-            background: #E8F5E9;
-            color: #4CAF50;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* כפתור הקראה מעוצב */
-        .tts-btn {
+            border-radius: 25px;
+            margin-bottom: 25px;
             display: none;
-            background-color: var(--accent-color);
+        }
+        .date-text {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .fact-text {
+            font-size: 2.2rem;
+            line-height: 1.4;
+            color: #4A4A4A;
+            margin-bottom: 30px;
+        }
+        .audio-btn {
+            background-color: #FF8A8A; /* צבע ורוד-כתום מהעיצוב */
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.5rem;
+            padding: 15px 35px;
+            font-size: 1.4rem;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 8px 15px rgba(255, 138, 138, 0.3);
-            transition: transform 0.2s;
-        }
-
-        .tts-btn:hover { transform: translateY(-3px); }
-        .tts-btn:active { transform: translateY(1px); }
-
-        /* אזור האודיו */
-        .audio-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 40px;
-            border-top: 2px solid #F0F0F0;
-            padding-top: 30px;
             display: none;
-        }
-
-        .audio-card {
-            background: #F9F9F9;
-            padding: 15px;
-            border-radius: 20px;
-        }
-
-        .audio-card h3 {
-            font-size: 1rem;
-            margin-top: 0;
-            color: #888;
-        }
-
-        audio { width: 100%; height: 40px; }
-
-        @media (max-width: 600px) {
-            .fact-text { font-size: 1.8rem; }
-            .audio-grid { grid-template-columns: 1fr; }
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <img id="dailyImage" src="" alt="תמונת היום">
-        
-        <div id="eventContainer" style="display:none;">
-            <span id="eventDisplay" class="event-badge"></span>
-        </div>
-
-        <h1 id="dateDisplay">טוען...</h1>
-        
-        <div id="factDisplay" class="fact-text">מתחבר למסד הנתונים...</div>
-
-        <button id="playFactAudioBtn" class="tts-btn">שמעי את אמא 🎧</button>
+        <img id="dailyImage" src="" alt="תמונה">
+        <div id="dateDisplay" class="date-text">טוען...</div>
+        <div id="factDisplay" class="fact-text">מתחבר...</div>
+        <button id="playFactAudioBtn" class="audio-btn">שמעי את אמא 🎧</button>
         <audio id="factAudioPlayer" style="display: none;"></audio>
-
-        <div id="audioWrapper" class="audio-grid">
-            <div id="parentAudioContainer" class="audio-card" style="display:none;">
-                <h3>הודעה מאיתנו</h3>
-                <audio id="parentAudio" controls></audio>
-            </div>
-            
-            <div id="podcastContainer" class="audio-card" style="display:none;">
-                <h3>פודקאסט יומי</h3>
-                <audio id="podcastAudio" controls></audio>
-            </div>
-        </div>
     </div>
-
     <script src="app.js"></script>
-    <script>
-        // רישום ה-Service Worker לאופליין
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-    </script>
 </body>
 </html>
