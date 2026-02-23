@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegacySync Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f8ff; color: #333; text-align: center; padding: 20px; }
+        .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto; }
+        h1 { color: #2c3e50; font-size: 2.2em; margin-bottom: 5px; }
+        .fact-text { font-size: 2em; line-height: 1.5; color: #34495e; margin-bottom: 20px; }
+        .event-text { font-size: 1.5em; color: #e74c3c; font-weight: bold; margin-top: 15px; }
+        .loading { color: #7f8c8d; font-style: italic; }
+        
+        /* עיצוב התמונה */
+        #dailyImage { max-width: 100%; border-radius: 15px; margin-bottom: 20px; display: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        
+        /* עיצוב כפתור הקראת העובדה בקול של אמא */
+        .tts-btn { display: none; background-color: #f39c12; color: white; border: none; padding: 12px 25px; font-size: 1.3em; border-radius: 25px; cursor: pointer; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s; }
+        .tts-btn:active { transform: scale(0.95); }
+        
+        /* עיצוב אזור הפודקאסטים וההודעות */
+        .audio-section { background-color: #e8f4f8; padding: 15px; border-radius: 15px; margin-top: 25px; display: none; }
+        .audio-player { margin-bottom: 15px; display: none; }
+        .audio-player h3 { margin: 0 0 10px 0; color: #2980b9; font-size: 1.3em; }
+        audio { width: 100%; outline: none; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img id="dailyImage" src="" alt="תמונת היום">
+
+        <h1 id="dateDisplay">טוען נתונים...</h1>
+        <p id="eventDisplay" class="event-text"></p>
+        <p id="factDisplay" class="fact-text loading">אנא המתן...</p>
+        
+        <button id="playFactAudioBtn" class="tts-btn">הקרא לי את העובדה 👩🏻</button>
+        <audio id="factAudioPlayer" style="display: none;"></audio>
+        
+        <div id="audioWrapper" class="audio-section">
+            <div id="parentAudioContainer" class="audio-player">
+                <h3>הודעה מהמשפחה 🎤</h3>
+                <audio id="parentAudio" controls></audio>
+            </div>
+            
+            <div id="podcastContainer" class="audio-player">
+                <h3>פודקאסט היום 🎧</h3>
+                <audio id="podcastAudio" controls></audio>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
